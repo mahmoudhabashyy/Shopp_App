@@ -17,25 +17,23 @@ void main() async {
   DioHelper.init();
   await CacheHelper.init();
 
-  bool isDark = CacheHelper.getData(key: 'isDark') ;
+  bool? isDark = CacheHelper.getData(key: 'isDark');
   Widget widget;
-  bool onBoarding = CacheHelper.getData(key: 'onBoarding');
-  String token = CacheHelper.getData(key: 'token');
+  bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+  String? token = CacheHelper.getData(key: 'token');
 
-  if(onBoarding != null)
-  {
-    if(token != null) {
+  if (onBoarding != null) {
+    if (token != null) {
       widget = const ShopLayout();
     } else {
-      widget =  LoginScreen();
+      widget = LoginScreen();
     }
-  }else
-  {
+  } else {
     widget = const OnBoardingScreen();
   }
 
   runApp(MyApp(
-    isDark: isDark,
+    isDark: 'isDark' == "true" ? true : false,
     startWidget: widget,
   ));
 }
