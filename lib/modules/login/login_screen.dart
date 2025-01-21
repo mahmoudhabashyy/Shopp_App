@@ -23,17 +23,17 @@ class LoginScreen extends StatelessWidget {
           if (state is ShopAppSuccessState) {
             if (state.loginModel.status == true) {
               debugPrint(state.loginModel.message);
-              debugPrint(state.loginModel.data?.token);
+              debugPrint(state.loginModel.data!.token);
               CacheHelper.saveData(
                 key: "token",
-                value: state.loginModel.data?.token,
+                value: state.loginModel.data!.token,
               ).then((value) {
                 navigateAndFinish(
                   context,
                   const ShopLayout(),
                 );
               });
-            } else {
+            } else{
               debugPrint(state.loginModel.message);
               showToast(
                 text: state.loginModel.message ?? '',
