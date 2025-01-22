@@ -17,7 +17,7 @@ void main() async {
   DioHelper.init();
   await CacheHelper.init();
 
-  bool? isDark = CacheHelper.getData(key: 'isDark');
+  //bool? isDark = CacheHelper.getData(key: 'isDark');
   Widget widget;
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
   String? token = CacheHelper.getData(key: 'token');
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ShopAppCubit(),
+      create: (context) => ShopAppCubit()..getHomeData(),
       child: BlocConsumer<ShopAppCubit, ShopAppStates>(
         listener: (context, state) {},
         builder: (context, state) {
