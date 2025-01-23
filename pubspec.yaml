@@ -44,6 +44,7 @@ dependencies:
   conditional_builder_null_safety:
   fluttertoast:
   shared_preferences:
+  carousel_slider:
 
 dev_dependencies:
   flutter_test:
