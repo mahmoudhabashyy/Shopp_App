@@ -8,8 +8,8 @@ import 'package:shope_app/modules/search/search_screen.dart';
 import 'package:shope_app/network/remote/dio_helper.dart';
 import 'package:shope_app/shared/cubit/states.dart';
 
-//import '../../components/constans.dart';
 import '../../components/constans.dart';
+import '../../models/categories_model.dart';
 import '../../models/home_model.dart';
 import '../../network/endpoint.dart';
 
@@ -42,9 +42,9 @@ class ShopAppCubit extends Cubit<ShopAppStates> {
     ).then((value) {
       homeModel = HomeModel.fromJson(value.data);
 
-      print(homeModel?.data?.banners?[0].image);
+      print(homeModel?.data?.banners[0].image);
 
-      debugPrint(homeModel?.status.toString());
+      print(homeModel?.status);
       //printFullText(homeModel.toString());
       emit(ShopSuccessHomeDataState());
     }).catchError((error) {
@@ -52,6 +52,24 @@ class ShopAppCubit extends Cubit<ShopAppStates> {
       emit(ShopErrorHomeDataState());
     });
   }
+
+
+  CategoriesModel? categoriesModel;
+  void getCategories() {
+
+    DioHelper.getData(
+      url: GET_GATEGORIES,
+    ).then((value) {
+      categoriesModel = CategoriesModel.fromJson(value.data);
+
+      emit(ShopSuccessCategoriesState());
+    }).catchError((error) {
+      debugPrint(error.toString());
+      emit(ShopErrorCategoriesState());
+    });
+  }
+
+
 
   LoginModel? loginModel;
 
